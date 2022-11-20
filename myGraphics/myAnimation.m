@@ -239,7 +239,7 @@ classdef myAnimation < handle
                step = 1; 
             end            
             
-            idx_start = round( start_time/dt );
+            idx_start = round( start_time/obj.tStep );
             if idx_start == 0                                                   % In case the step is too small, then set the simStep as 1
                idx_start = 1; 
             end                        
