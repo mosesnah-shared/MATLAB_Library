@@ -193,7 +193,7 @@ classdef myAnimation < handle
                                          
         end        
 
-        function run( obj, vidRate, duration, isVidRecord, videoName )
+        function run( obj, vidRate, start_time, duration, isVidRecord, videoName )
             %run: running the a whole animation and saving the video if defined.
             % [INPUTS]
             %   (1) vidRate 
@@ -239,8 +239,12 @@ classdef myAnimation < handle
                step = 1; 
             end            
             
-
-            for i = 1 : step : N
+            idx_start = round( start_time/dt );
+            if idx_start == 0                                                   % In case the step is too small, then set the simStep as 1
+               idx_start = 1; 
+            end                        
+            
+            for i = idx_start : step : N
                 
                 obj.goto( i )                                              % Run a single step of the simulation
                 
